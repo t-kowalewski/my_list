@@ -5,7 +5,7 @@ const addModal = document.getElementById('add-modal');
 const cancelModalBtn = document.querySelector('.modal__actions')
   .firstElementChild;
 
-// Functions
+// Functions - Handlers
 const addModalToggle = () => {
   addModal.classList.toggle('visible');
 };
@@ -14,18 +14,14 @@ const backdropToggle = () => {
   backdrop.classList.toggle('visible');
 };
 
+const toggleAddModalAndBackdrop = () => {
+  addModalToggle();
+  backdropToggle();
+};
+
 // Event Listeners
-addBtn.addEventListener('click', () => {
-  addModalToggle();
-  backdropToggle();
-});
+addBtn.addEventListener('click', toggleAddModalAndBackdrop);
 
-cancelModalBtn.addEventListener('click', () => {
-  addModalToggle();
-  backdropToggle();
-});
+cancelModalBtn.addEventListener('click', toggleAddModalAndBackdrop);
 
-backdrop.addEventListener('click', () => {
-  addModalToggle();
-  backdropToggle();
-});
+backdrop.addEventListener('click', toggleAddModalAndBackdrop);
