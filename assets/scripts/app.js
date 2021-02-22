@@ -5,10 +5,14 @@ const backdrop = document.getElementById('backdrop');
 
 // Modals
 const addModal = document.getElementById('add-modal');
+const userInputs = addModal.querySelectorAll('input');
+const deleteModal = document.getElementById('delete-modal');
+
 const modalActions = document.querySelectorAll('.modal__actions');
 const cancelModalBtn = modalActions[0].firstElementChild;
 const addModalBtn = modalActions[0].lastElementChild;
-const userInputs = addModal.querySelectorAll('input');
+const noBtn = modalActions[1].firstElementChild;
+const yesBtn = modalActions[1].lastElementChild;
 
 const entryTextSection = document.getElementById('entry-text');
 const userList = document.getElementById('user-list');
