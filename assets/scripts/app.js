@@ -9,12 +9,40 @@ const modalActions = document.querySelectorAll('.modal__actions');
 const cancelModalBtn = modalActions[0].firstElementChild;
 const addModalBtn = modalActions[0].lastElementChild;
 const userInputs = addModal.querySelectorAll('input');
+
+const entryTextSection = document.getElementById('entry-text');
+const userList = document.getElementById('user-list');
 ////////////////////////////
 
 // DATA
 const itemsList = [];
 
 // Functions - Handlers
+const updataUI = () => {
+  if (itemsList.length === 0) {
+    entryTextSection.style.display = 'block';
+  } else {
+    entryTextSection.style.display = 'none';
+  }
+};
+
+const renderNewItem = (newItemObj) => {
+  const newItemElement = document.createElement('li');
+  newItemElement.classList.add('user-element');
+  newItemElement.innerHTML = `
+    <div class='user-element__image'>
+      <img src='${newItemObj.img}' alt='${newItemObj.title}'>
+    </div>
+
+    <div class='user-element__info'>
+      <h2>${newItemObj.title}</h2>
+      <p>${newItemObj.rating} / 5</p>
+    </div>
+  `;
+
+  userList.append(newItemElement);
+};
+
 const addModalToggle = () => {
   addModal.classList.toggle('visible');
 };
@@ -61,6 +89,8 @@ const addItem = () => {
 
   toggleAddModalAndBackdrop();
   clearInput();
+  renderNewItem(newItem);
+  updataUI();
 };
 
 // Event Listeners

@@ -144,25 +144,25 @@ input:focus {
   justify-content: flex-end;
 }
 
-.movie-element {
+.user-element {
   margin: 1rem 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 10px;
   display: flex;
 }
 
-.movie-element h2,
-.movie-element p {
+.user-element h2,
+.user-element p {
   font-size: 1.25rem;
   margin: 0;
 }
 
-.movie-element h2 {
+.user-element h2 {
   color: #383838;
   margin-bottom: 1rem;
 }
 
-.movie-element p {
+.user-element p {
   color: white;
   display: inline;
   background: #f67722;
@@ -170,19 +170,19 @@ input:focus {
   border-radius: 15px;
 }
 
-.movie-element__image {
+.user-element__image {
   flex: 1;
   border-radius: 10px 0 0 10px;
   overflow: hidden;
 }
 
-.movie-element__image img {
+.user-element__image img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
 
-.movie-element__info {
+.user-element__info {
   flex: 2;
   padding: 1rem;
 }
@@ -205,7 +205,7 @@ input:focus {
   text-align: center;
 }
 
-#movie-list {
+#user-list {
   list-style: none;
   width: 40rem;
   max-width: 90%;
