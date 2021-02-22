@@ -12,6 +12,7 @@ const userInputs = addModal.querySelectorAll('input');
 
 const entryTextSection = document.getElementById('entry-text');
 const userList = document.getElementById('user-list');
+const userListItems = userList.children;
 ////////////////////////////
 
 // DATA
@@ -24,6 +25,21 @@ const updataUI = () => {
   } else {
     entryTextSection.style.display = 'none';
   }
+};
+
+const deleteListItem = (itemId) => {
+  let index = 0;
+  for (const item of itemsList) {
+    if (item.id === itemId) {
+      break;
+    }
+    index++;
+  }
+
+  itemsList.splice(index, 1);
+  userListItems[index].remove();
+
+  updataUI();
 };
 
 const renderNewItem = (newItemObj) => {
@@ -40,6 +56,10 @@ const renderNewItem = (newItemObj) => {
     </div>
   `;
 
+  newItemElement.addEventListener(
+    'click',
+    deleteListItem.bind(null, newItemObj.id)
+  );
   userList.append(newItemElement);
 };
 
@@ -79,6 +99,7 @@ const addItem = () => {
   }
 
   const newItem = {
+    id: Math.random().toString(),
     title: itemTitle.trim(),
     img: itemImg.trim(),
     rating: itemRating.trim(),
