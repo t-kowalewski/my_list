@@ -46,6 +46,13 @@ const deleteListItem = (itemId) => {
   updataUI();
 };
 
+const deleteListItemHandler = (id) => {
+  deleteModal.classList.add('visible');
+
+  backdropToggle();
+  // deleteListItem(id)
+};
+
 const renderNewItem = (newItemObj) => {
   const newItemElement = document.createElement('li');
   newItemElement.classList.add('user-element');
@@ -62,28 +69,49 @@ const renderNewItem = (newItemObj) => {
 
   newItemElement.addEventListener(
     'click',
-    deleteListItem.bind(null, newItemObj.id)
+    deleteListItemHandler.bind(null, newItemObj.id)
   );
   userList.append(newItemElement);
 };
 
-const addModalToggle = () => {
-  addModal.classList.toggle('visible');
+// addModalToggle
+const showAddModal = () => {
+  addModal.classList.add('visible');
+};
+
+const hideAddModal = () => {
+  addModal.classList.remove('visible');
 };
 
 const backdropToggle = () => {
   backdrop.classList.toggle('visible');
 };
 
-const toggleAddModalAndBackdrop = () => {
-  addModalToggle();
+// toggleAddModalAndBackdrop;
+const showAddModalAndBackdrop = () => {
+  showAddModal();
   backdropToggle();
+};
+
+const hideAddModalAndBackdrop = () => {
+  hideAddModal();
+  backdropToggle();
+};
+
+const hideModalsAndBackdrop = () => {
+  hideAddModalAndBackdrop();
+  deleteModal.classList.remove('visible');
 };
 
 const clearInput = () => {
   for (const input of userInputs) {
     input.value = '';
   }
+};
+
+const cancelAddModal = () => {
+  hideAddModalAndBackdrop();
+  clearInput();
 };
 
 const addItem = () => {
@@ -112,18 +140,14 @@ const addItem = () => {
   itemsList.push(newItem);
   console.log(itemsList);
 
-  toggleAddModalAndBackdrop();
-  clearInput();
+  cancelAddModal();
   renderNewItem(newItem);
   updataUI();
 };
 
 // Event Listeners
-addBtn.addEventListener('click', toggleAddModalAndBackdrop);
-backdrop.addEventListener('click', toggleAddModalAndBackdrop);
+addBtn.addEventListener('click', showAddModalAndBackdrop);
+backdrop.addEventListener('click', hideModalsAndBackdrop);
 
-cancelModalBtn.addEventListener('click', () => {
-  toggleAddModalAndBackdrop();
-  clearInput();
-});
+cancelModalBtn.addEventListener('click', cancelAddModal);
 addModalBtn.addEventListener('click', addItem);
