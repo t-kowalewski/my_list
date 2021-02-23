@@ -47,10 +47,15 @@ const deleteListItem = (itemId) => {
 };
 
 const deleteListItemHandler = (id) => {
+  const transitID = id;
   deleteModal.classList.add('visible');
-
   backdropToggle();
-  // deleteListItem(id)
+
+  noBtn.addEventListener('click', hideModalsAndBackdrop);
+  yesBtn.addEventListener('click', () => {
+    deleteListItem(transitID);
+    hideModalsAndBackdrop();
+  });
 };
 
 const renderNewItem = (newItemObj) => {
@@ -74,7 +79,6 @@ const renderNewItem = (newItemObj) => {
   userList.append(newItemElement);
 };
 
-// addModalToggle
 const showAddModal = () => {
   addModal.classList.add('visible');
 };
@@ -87,7 +91,6 @@ const backdropToggle = () => {
   backdrop.classList.toggle('visible');
 };
 
-// toggleAddModalAndBackdrop;
 const showAddModalAndBackdrop = () => {
   showAddModal();
   backdropToggle();
