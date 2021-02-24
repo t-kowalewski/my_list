@@ -11,8 +11,7 @@ const deleteModal = document.getElementById('delete-modal');
 const modalActions = document.querySelectorAll('.modal__actions');
 const cancelModalBtn = modalActions[0].firstElementChild;
 const addModalBtn = modalActions[0].lastElementChild;
-const noBtn = modalActions[1].firstElementChild;
-const yesBtn = modalActions[1].lastElementChild;
+const noBtn = modalActions[1].firstElementChild; // yesBtn - below
 
 const entryTextSection = document.getElementById('entry-text');
 const userList = document.getElementById('user-list');
@@ -43,18 +42,23 @@ const deleteListItem = (itemId) => {
   itemsList.splice(index, 1);
   userListItems[index].remove();
 
+  hideModalsAndBackdrop();
   updataUI();
 };
 
 const deleteListItemHandler = (id) => {
-  const transitID = id;
   deleteModal.classList.add('visible');
   backdropToggle();
 
+  let yesBtn = modalActions[1].lastElementChild;
+  // Removing old listeners - all the time we work with the same modal!
+  noBtn.removeEventListener('click', hideModalsAndBackdrop);
+  yesBtn.replaceWith(yesBtn.cloneNode(true)); // we clone & replace node - old one is deleted and so is its listener
+  yesBtn = modalActions[1].lastElementChild; // old button is removed, so we select new one once again
+
   noBtn.addEventListener('click', hideModalsAndBackdrop);
   yesBtn.addEventListener('click', () => {
-    deleteListItem(transitID);
-    hideModalsAndBackdrop();
+    deleteListItem(id);
   });
 };
 
